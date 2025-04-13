@@ -4,7 +4,6 @@ const bodyParser = require('body-parser');
 const oracledb = require('oracledb');
 const cors = require('cors');
 const app = express();
-const port = 3002;
 app.use(cors());
 app.use(express.json());
 const productRoutes = require('./product/productRoutes');
@@ -23,7 +22,7 @@ app.use('/admin', adminRoutes);
 app.get('*', (req, res) => {
     res.status(404).send('Không tìm thấy trang');
 });
-
+const port = process.env.PORT || 3002;
 app.listen(port, () => {
     console.log(`Server đang chạy tại http://localhost:${port}`);
 });
